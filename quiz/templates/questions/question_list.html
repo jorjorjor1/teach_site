@@ -1,0 +1,12 @@
+{% extends 'questions/base.html' %}
+
+{% block title %} Список вопросов {% endblock %}
+
+{% block content %}
+
+    <p align="center" class="text1">Список вопросов:</p>
+    {% for elem in x %}
+        <a href="{{ forloop.counter0 }}" class = 'link1'>{{elem}}</a><br>
+
+    {%endfor%}
+{% endblock %}

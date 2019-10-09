@@ -1,0 +1,17 @@
+{% extends 'questions/base.html' %}
+
+{% block title %} Список викторин {% endblock %}
+
+{% block content %}
+    <p align="center" class="text1">Список викторин:</p>
+    {% if quiz_list %}
+
+        {% for quiz in quiz_list %}
+            <a href="{% url 'quiz_details' quiz.id %}" class="link1">{{quiz.id}}.{{quiz.quiz_name}}</a><br>
+        {% endfor %}
+
+    {% else %}
+        Викторины не найдены
+    {% endif %}
+
+{% endblock %}

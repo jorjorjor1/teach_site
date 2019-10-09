@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+{% load staticfiles %}
+
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Victorina {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+        body {
+    background-image: url({% static 'questions/back.png'%}); /* Путь к фоновому изображению */
+    background-color: #FFFACD; /* Цвет фона */
+    background-position: 40% 0%;
+    background-repeat: no-repeat
+    }
+
+    </style>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+    <p align="right" class = 's3'> Привет {{ user.username }}!</p>
+        <p align="right" ><a href="{% url 'LogoutView' %}" class = 's3'>logout</a></p><br>
+    {% else %}
+        <p align="right"  class="s3">Вы не вошли в систему</p>
+        <p align="right"><a href="{% url 'login_user' %}" class="s3">Войти</a><br></p>
+        <p align="right"><a href="{% url 'signup' %}" class="s3">Зарегистрироваться</a><br></p>
+    {%endif%}
+    {% block content %}{% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</body>
+
+</html>

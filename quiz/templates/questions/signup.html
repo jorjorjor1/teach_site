@@ -1,0 +1,21 @@
+{% extends 'questions/base.html' %}
+
+{% block content %}
+  <h2 class="text1" >Регистрация</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p class = 's3'>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey" class="s3">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red" class = 's3'>{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Зарегистрироваться</button>
+  </form>
+{% endblock %}

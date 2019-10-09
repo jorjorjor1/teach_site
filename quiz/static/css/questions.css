@@ -1,0 +1,30 @@
+.s3{
+  color: #BA7D67;
+  border: 2px solid transparent;
+  text-decoration:none;
+  font-family: 'Pacifico', cursive;
+  padding-right: 10px;
+}
+
+
+.text1 {
+    padding: 5px; /* Поля вокруг текста */
+    margin-bottom: 30px; /* Отступ снизу */
+    margin-top: 40px; /* Отступ сверху */
+    vertical-align:middle;
+    font-family: 'Pacifico', cursive;
+    font-size:75px;
+    text-align: center;
+
+    }
+
+
+.link1{
+  color: #BA7D67;
+  border: 2px solid transparent;
+  text-decoration:none;
+  font-family: 'Pacifico', cursive;
+  font-size: 70px;
+  margin-left:50px;
+}
+
