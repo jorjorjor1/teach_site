@@ -5,8 +5,10 @@
 {% block content %}
 
     <p align="center" class="text1">Список вопросов:</p>
-    {% for elem in x %}
-        <a href="{{ forloop.counter0 }}" class = 'link1'>{{elem}}</a><br>
+    {% for elem in new_data %}
+        <p> {{elem.0}}</p> 
+        <a href="{{ forloop.counter0 }}" class = 'link1'>{{elem.1}}</a><br>
+        <p>Выиграно очков: {{elem.2}}</p>
 
     {%endfor%}
 {% endblock %}
