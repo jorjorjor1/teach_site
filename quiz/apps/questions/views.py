@@ -11,9 +11,12 @@ import os.path
 from django.db import connection
 
 # Create your views here.
-def main_screen(request):
+def premain (request):
+    return render(request, 'questions/premain.html',)
+
+def quizes(request):
     quiz_list = Quiz.objects.all()
-    return render(request, 'questions/main_page.html', {'quiz_list':quiz_list})
+    return render(request, 'questions/quizes.html', {'quiz_list':quiz_list})
 
 def questions_list(request):
     try:
@@ -71,9 +74,9 @@ def question(request, question_id, quiz_id):
         if user == "" and results == []:
             messages.add_message(request, messages.SUCCESS, 'Правильно!')
         elif user != "" and results == []:
-            player = results[0][2]
+            user_for_input = request.user.get_username()
             #print(player, value)
-            messages.add_message(request, messages.SUCCESS, ('Правильно! Игрок {} получает {} очков').format(player, value))
+            messages.add_message(request, messages.SUCCESS, ('Правильно! Игрок {} получает {} очков').format(user_for_input, value))
             select_user_id = """select auth_user.id
             from auth_user
             WHERE auth_user.username = '%s'""" %(user,)
@@ -118,11 +121,12 @@ def question(request, question_id, quiz_id):
 
 def quiz_details(request, quiz_id):
 
-    try:
-        a = Quiz.objects.get(id=quiz_id)
-        cursor = connection.cursor()
-        user = request.user.get_username()
-        #x = a.question_set.all() 
+    
+    a = Quiz.objects.get(id=quiz_id)
+    cursor = connection.cursor()
+    user = request.user.get_username()
+    if user != "":
+    
         select_questions_list = """select questions_question.id, questions_question.question_text from questions_question where questions_question.quiz_id = '%s'""" %(quiz_id)
         cursor.execute(select_questions_list)
         quest_list = cursor.fetchall()
@@ -158,21 +162,19 @@ def quiz_details(request, quiz_id):
                 id_checked.append(para[0])
         for pair in x:
             if pair[0] not in id_checked:
-                diction2 = [pair[0], pair[1]]
+                diction2 = [pair[0], pair[1], '0']
                 new_data.append(diction2)
                 id_checked.append(pair[0])
 
-            
+            print(new_data)
 
+    elif user == "":
+        a = Quiz.objects.get(id=quiz_id)
+        new_data = a.question_set.all() 
         print(new_data)
-                    
 
 
-
-    except:
-        raise Http404 ('Вопрос не найден')
-
-    return render(request, 'questions/question_list.html', {'x': x, 'new_data':new_data})
+    return render(request, 'questions/question_list.html', {'new_data':new_data})
 
 
 
@@ -187,7 +189,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('../../quizes')
     return render(request, 'questions/login.html')
 
 def signup(request):
@@ -199,7 +201,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("../../quizes")
     else:
         form = UserCreationForm()
     return render(request, 'questions/signup.html', {'form': form})
@@ -209,5 +211,5 @@ def LogoutView(request):
     logout(request)
 
     # После чего, перенаправляем пользователя на главную страницу.
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("../../quizes")
 

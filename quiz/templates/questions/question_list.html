@@ -5,10 +5,18 @@
 {% block content %}
 
     <p align="center" class="text1">Список вопросов:</p>
-    {% for elem in new_data %}
-        <p> {{elem.0}}</p> 
-        <a href="{{ forloop.counter0 }}" class = 'link1'>{{elem.1}}</a><br>
-        <p>Выиграно очков: {{elem.2}}</p>
+    {% if user.is_authenticated %}
+        {% for elem in new_data %}
 
-    {%endfor%}
+            <p align="center" class = 'ac'><a href="{{ forloop.counter0 }}">{{elem.1}}</a> Выиграно очков: {{elem.2}}</p>
+        </div>
+        {%endfor%}
+    {% else %}
+        {% for elem in new_data %}
+        
+        <a href="{{ forloop.counter0 }}" class = 'link1'>{{elem}}</a><br>
+     
+        {%endfor%}
+    {%endif%}
+
 {% endblock %}

@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="{% static 'css/questions.css' %}">
+
+   
+    
+        body {
+    
+    background-image: url({% static 'questions/back.png'%}); /* Путь к фоновому изображению */
+    background-color: #FFFACD; /* Цвет фона */
+    background-position: 40% 0%;
+    background-repeat: no-repeat
+    }
+

@@ -1,5 +1,5 @@
 {% extends 'questions/base.html' %}
-{%load static%}
+{% load static%}
 {% block title %} Вопрос {% endblock %}
 
 {% block content %}
@@ -20,7 +20,9 @@
         <p align="center"><input type="submit" value="Выбрать"></p>
 
          {% for message in messages %}
+         <div class="alert alert-success" role="alert">
              {{ message }}
+         </div> 
          {% endfor %}
 
 
@@ -29,14 +31,15 @@
     {% endif %}
     {{results}}
     {% if next_question_id < questions_quant %}
+
         <p class = 's3' align="right"><a href="/{{quiz_id}}/{{next_question_id}}">Следующий вопрос </a></p>
-            <p class = 's3' align="center"><a href="/" >Главное меню </a></p>
+            <p class = 's3' align="center"><a href="../../quizes" >Главное меню </a></p>
     {% else %}
-        <p class = 's3' align="center"><a href="/" >Главное меню </a></p>
+        <p class = 'ac' align="center"><a href="../../quizes" >Главное меню </a></p>
     {% endif %}
 
      {% if prev_question_id >= 0%}
-        <p class = 's3'><a href="/{{quiz_id}}/{{prev_question_id}}">Предыдущий вопрос </a></p>
+        <p class = 'ac'><a href="/{{quiz_id}}/{{prev_question_id}}">Предыдущий вопрос </a></p>
      {% else %}
      {% endif %}
 

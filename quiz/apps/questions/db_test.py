@@ -50,3 +50,23 @@ with sqlite3.connect(db_path) as db:
     print(results)
     
     db.close()
+
+                    if pair[0] == para[0] and pair[0] not in id_checked:
+                    try:
+                        diction = [pair[0], pair[1],para[2]]
+                        print('верхняя')
+                        print(diction)
+                        # if diction[2] == "":
+                        #     break
+                        new_data.append(diction)
+                        id_checked.append(pair[0])
+                        
+                        
+                    except ValueError:
+                        pass
+                elif pair[0] != para[0] and pair[0] not in id_checked:
+                    print('нижняя')
+                    diction = [pair[0], pair[1]]
+                    new_data.append(diction)
+                    print(diction)
+                    id_checked.append(pair[0])

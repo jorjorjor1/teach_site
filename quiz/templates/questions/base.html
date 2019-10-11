@@ -3,20 +3,17 @@
 {% load staticfiles %}
 
 
-<html lang="ru">
+<html lang="en">
 <head>
+    
+
     <meta charset="UTF-8">
     <title>{% block title %} Victorina {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
-    <style>
-    @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
-        body {
-    background-image: url({% static 'questions/back.png'%}); /* Путь к фоновому изображению */
-    background-color: #FFFACD; /* Цвет фона */
-    background-position: 40% 0%;
-    background-repeat: no-repeat
-    }
 
+
+    <style>
+ 
     </style>
 </head>
 <body>
@@ -29,8 +26,10 @@
         <p align="right"><a href="{% url 'login_user' %}" class="s3">Войти</a><br></p>
         <p align="right"><a href="{% url 'signup' %}" class="s3">Зарегистрироваться</a><br></p>
     {%endif%}
-    {% block content %}{% endblock %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    {% block content %}
+    {% endblock %}
+    
 </body>
 
 </html>
+

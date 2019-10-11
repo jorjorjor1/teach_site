@@ -1,3 +1,14 @@
+.ac{
+  color: red;
+  border: 2px solid transparent;
+  text-decoration:none;
+  font-family: 'Pacifico', cursive;
+  padding-right: 20px;
+  
+  }
+
+
+
 .s3{
   color: #BA7D67;
   border: 2px solid transparent;
@@ -5,6 +16,7 @@
   font-family: 'Pacifico', cursive;
   padding-right: 10px;
 }
+
 
 
 .text1 {
@@ -27,4 +39,5 @@
   font-size: 70px;
   margin-left:50px;
 }
+
 
